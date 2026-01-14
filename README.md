@@ -484,4 +484,52 @@ A professional applied data science repository with best practices.
 - Testing framework
 
 ## 📁 Structure
+#!/usr/bin/env python3
+"""
+Applied Data Science Repository Generator - Complete Backend Server
+"""
 
+import os
+import json
+import zipfile
+import tempfile
+import shutil
+import uuid
+from pathlib import Path
+from datetime import datetime
+from flask import Flask, request, jsonify, send_file, render_template, send_from_directory
+from flask_cors import CORS
+import yaml
+from werkzeug.utils import secure_filename
+
+app = Flask(__name__, static_folder='static', template_folder='templates')
+CORS(app)
+
+# Configuration
+UPLOAD_FOLDER = 'temp_uploads'
+ALLOWED_EXTENSIONS = {'json', 'yaml', 'yml'}
+MAX_CONTENT_LENGTH = 16 * 1024 * 1024  # 16MB max upload
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['MAX_CONTENT_LENGTH'] = MAX_CONTENT_LENGTH
+
+# Ensure upload directory exists
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+os.makedirs('static', exist_ok=True)
+os.makedirs('templates', exist_ok=True)
+
+# Template content (same as before but formatted for Python)
+TEMPLATES = {
+    "readme": """# {repo_name}
+
+A professional applied data science repository with best practices.
+
+## 🚀 Features
+
+- Complete project structure
+- MLOps pipeline
+- Docker support
+- Sample projects
+- Testing framework
+
+## 📁 Structure
