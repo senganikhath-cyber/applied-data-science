@@ -451,3 +451,37 @@
     <script src="script.js"></script>
 </body>
 </html>
+#!/usr/bin/env python3
+"""
+Applied Data Science Repository Generator - Backend API
+"""
+
+import os
+import json
+import zipfile
+import tempfile
+import shutil
+from pathlib import Path
+from datetime import datetime
+from flask import Flask, request, jsonify, send_file, render_template
+from flask_cors import CORS
+import yaml
+
+app = Flask(__name__)
+CORS(app)
+
+# Template structures
+TEMPLATES = {
+    "readme": """# {repo_name}
+
+A professional applied data science repository with best practices.
+
+## 🚀 Features
+
+- Complete project structure
+- MLOps pipeline
+- Docker support
+- Sample projects
+- Testing framework
+
+## 📁 Structure
